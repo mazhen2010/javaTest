@@ -18,7 +18,7 @@ public class TestSift {
 
     public static void main(String[] args) throws JoranException {
 
-        String configFile = "src/main/resources/log/byUserid.xml";
+        String configFile = "src/main/resources/log/sync.xml";
 
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
         JoranConfigurator configurator = new JoranConfigurator();
@@ -30,8 +30,9 @@ public class TestSift {
         Logger logger = LoggerFactory.getLogger(TestSift.class);
         logger.debug("Application started");
 
-        MDC.put("userid", "Alice");
+        MDC.put("typeName", "Alice");
         logger.debug("Alice says hello");
+
 
         //StatusPrinter.print(lc);
     }

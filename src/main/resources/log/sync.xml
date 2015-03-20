@@ -1,0 +1,55 @@
+<configuration>
+
+    <property name="LOG_HOME" value="/home/sync/logs"/>
+
+    <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>typeName</Key>
+            <DefaultValue>unknown</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="${typeName}" class="ch.qos.logback.core.FileAppender">
+                <file>${LOG_HOME}/${typeName}.log</file>s
+                <Append>false</Append>
+                <layout class="ch.qos.logback.classic.PatternLayout">
+                    <Pattern>%d [%thread] %level %mdc %logger{35} - %msg%n</Pattern>
+                </layout>
+            </appender>
+        </sift>
+    </appender>
+
+    <appender name="sync" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>typeName</key>
+            <defaultValue>global</defaultValue>
+        </discriminator>
+        <sift>
+            <appender name="${typeName}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>${LOG_HOME}/sync/${typeName}/sync.log</file>
+                <append>false</append>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_HOME}/sync/${typeName}/sync.%d{yyyy-MM-dd}.log</fileNamePattern>
+                    <maxHistory>30</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %C{56} - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <!-- 控制台输出 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date [%thread] %-5level %logger{80} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.baidu.logback" level="DEBUG" additivity="true">
+        <appender-ref ref="sync"/>
+    </logger>
+
+    <root level="DEBUG">
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
