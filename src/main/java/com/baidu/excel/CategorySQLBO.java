@@ -1,7 +1,7 @@
 package com.baidu.excel;
 
 /**
- * @author mazhen <mazhen@kuaishou.com>
+ * @author mazhen
  * Created on 2019-04-14
  */
 public class CategorySQLBO {

@@ -4,11 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,8 +15,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
- * 新类目表生成倒入sql，读取本地excel
- * @author mazhen <mazhen@kuaishou.com>
+ * 读取本地excel
+ * @author mazhen
  * Created on 2019-04-12
  */
 public class CategoryInitSQLGenerator {
